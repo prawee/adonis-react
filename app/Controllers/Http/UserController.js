@@ -2,7 +2,7 @@
  * @Author: Prawee Wongsa prawee.w@integra8t.com 
  * @Date: 2019-03-27 14:38:01 
  * @Last Modified by: Prawee Wongsa
- * @Last Modified time: 2019-03-27 14:57:25
+ * @Last Modified time: 2019-03-27 15:30:33
  */
 
 'use strict'
@@ -21,6 +21,10 @@ class UserController {
             'first_name', 'last_name',
             'email', 'password'
         ])
+        const exist = await User.findBy('email', email)
+        if (exist)
+            return response.status(500).send({ message: 'Email already exist.'})
+
         await User.create({
             first_name,
             last_name,
