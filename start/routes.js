@@ -16,4 +16,10 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/').render('welcome')
+// Route.on('/').render('welcome')
+
+Route.group(() => {
+    Route.post('login', 'UserController.login')
+    Route.post('register', 'UserController.register')
+    Route.get('getuser/:id', 'UserController.show')
+}).prefix('users')
