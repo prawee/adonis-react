@@ -21,11 +21,14 @@ const { Ignitor } = require('@adonisjs/ignitor')
 const path = require('path')
 const https = require('https')
 const fs = require('fs')
+require('dotenv').config()
 
 // Certificate
 const options = {
-  key: fs.readFileSync(path.join(__dirname, './server.key')),
-  cert: fs.readFileSync(path.join(__dirname, './server.crt'))
+  key: fs.readFileSync(path.join(__dirname, './security/localhost.key')),
+  cert: fs.readFileSync(path.join(__dirname, './security/localhost.cert')),
+  requestCert: false,
+  rejectUnauthorized: false
 }
 
 new Ignitor(require('@adonisjs/fold'))
